@@ -5,6 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pranav Dobhal | E-Portfolio</title>
   <style>
+    :root {
+      --bg: #f5f5f7;
+      --text: #111827;
+      --card-bg: #ffffff;
+      --muted: #4b5563;
+      --accent: #2563eb;
+      --accent2: #4f46e5;
+      --chip-bg: #f3f4f6;
+      --chip-text: #374151;
+      --border-subtle: #e5e7eb;
+      --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow-hero: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    body.dark {
+      --bg: #020617;
+      --text: #e5e7eb;
+      --card-bg: #020617;
+      --muted: #9ca3af;
+      --accent: #1d4ed8;
+      --accent2: #22d3ee;
+      --chip-bg: #0f172a;
+      --chip-text: #e5e7eb;
+      --border-subtle: #1f2937;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.85);
+      --shadow-hero: 0 22px 55px rgba(15, 23, 42, 0.95);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,9 +41,10 @@
     }
 
     body {
-      background: #f5f5f7;
-      color: #111827;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     a {
@@ -24,12 +53,13 @@
     }
 
     header {
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: white;
       padding: 1.5rem 1rem;
       position: sticky;
       top: 0;
       z-index: 10;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
     }
 
     .nav-container {
@@ -46,6 +76,12 @@
       font-size: 1.2rem;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -58,20 +94,69 @@
       text-decoration: underline;
     }
 
+    .theme-toggle {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      background: rgba(15, 23, 42, 0.18);
+      color: #f9fafb;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(15, 23, 42, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle:active {
+      transform: translateY(0);
+    }
+
     main {
       max-width: 1100px;
       margin: 1.5rem auto 3rem auto;
       padding: 0 1rem;
     }
 
+    /* Simple fade-up animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeInUp 0.7s ease forwards;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.05s; }
+    section:nth-of-type(2) { animation-delay: 0.15s; }
+    section:nth-of-type(3) { animation-delay: 0.25s; }
+    section:nth-of-type(4) { animation-delay: 0.35s; }
+
     .hero {
-      background: white;
+      background: var(--card-bg);
       border-radius: 1.25rem;
       padding: 1.8rem;
       display: grid;
       grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
       gap: 1.5rem;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      box-shadow: var(--shadow-hero);
+      border: 1px solid var(--border-subtle);
     }
 
     @media (max-width: 768px) {
@@ -88,7 +173,7 @@
     .hero-text h2 {
       font-size: 1rem;
       font-weight: 500;
-      color: #4b5563;
+      color: var(--muted);
       margin-bottom: 0.8rem;
     }
 
@@ -104,17 +189,23 @@
       margin-bottom: 1rem;
     }
 
+    body.dark .hero-badge {
+      background: rgba(15, 23, 42, 0.9);
+      color: #bfdbfe;
+    }
+
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 0.8rem;
       margin-top: 1rem;
       font-size: 0.85rem;
-      color: #374151;
+      color: var(--muted);
     }
 
     .hero-meta span {
-      background: #f3f4f6;
+      background: var(--chip-bg);
+      color: var(--chip-text);
       padding: 0.25rem 0.6rem;
       border-radius: 999px;
     }
@@ -130,9 +221,11 @@
       height: 170px;
       border-radius: 999px;
       overflow: hidden;
-      border: 4px solid #e5e7eb;
-      box-shadow: 0 13px 30px rgba(15, 23, 42, 0.2);
+      border: 4px solid var(--border-subtle);
+      box-shadow: 0 13px 30px rgba(15, 23, 42, 0.5);
       background: #e5e7eb;
+      transform: translateY(0);
+      transition: transform 0.25s ease;
     }
 
     .hero-photo img {
@@ -142,16 +235,105 @@
       display: block;
     }
 
-    section {
-      margin-top: 2rem;
+    .hero-photo:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    section h2 span.icon {
+      font-size: 1.4rem;
     }
 
     .card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 1rem;
       padding: 1.3rem 1.4rem;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      box-shadow: var(--shadow-soft);
       margin-bottom: 1rem;
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.26);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+    }
+
+    body.dark .tag {
+      background: rgba(37, 99, 235, 0.2);
+      color: #bfdbfe;
+    }
+
+    ul {
+      margin-left: 1.1rem;
+      margin-top: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    ul li {
+      margin-bottom: 0.2rem;
+    }
+
+    .swoc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .swoc-box {
+      background: #f9fafb;
+      border-radius: 0.9rem;
+      padding: 0.8rem;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
+    }
+
+    body.dark .swoc-box {
+      background: #020617;
+    }
+
+    .swoc-box h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .swoc-box ul {
+      margin-left: 1.1rem;
+      margin-top: 0.2rem;
+    }
+
+    .swoc-box ul li {
+      margin-bottom: 0.15rem;
     }
 
     .cert-grid {
@@ -162,12 +344,20 @@
     }
 
     .cert-card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 0.9rem;
       overflow: hidden;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.26);
+      border-color: var(--accent2);
     }
 
     .cert-card img {
@@ -182,118 +372,310 @@
     }
 
     .cert-card h3 {
+      font-size: 0.98rem;
       margin-bottom: 0.2rem;
     }
 
+    .cert-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
     footer {
-      text-align: center;
-      padding: 1rem;
+      max-width: 1100px;
+      margin: 2rem auto 1.5rem auto;
+      padding: 0 1rem;
+      font-size: 0.8rem;
       color: #6b7280;
+      text-align: center;
+    }
+
+    body.dark footer {
+      color: #9ca3af;
     }
   </style>
 </head>
-
 <body>
-
-<header>
-  <div class="nav-container">
-    <div class="nav-title">Pranav Dobhal</div>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#assignments">Assignments</a></li>
-        <li><a href="#swoc">SWOC</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-  <!-- HERO -->
-  <section id="about" class="hero">
-    <div class="hero-text">
-      <h1>Pranav Dobhal</h1>
-      <h2>Student | Engineering & Computer Science Enthusiast</h2>
-      <p>
-        This e-portfolio showcases my communication skills, presentations, JAM speech,
-        roleplay activities, and my SWOC analysis.
-      </p>
-    </div>
-
-    <div class="hero-photo-wrapper">
-      <div class="hero-photo">
-        <img src="images/profile.jpg" alt="Pranav Dobhal">
+  <!-- NAVBAR -->
+  <header>
+    <div class="nav-container">
+      <div class="nav-title">Pranav Dobhal</div>
+      <div class="nav-right">
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#assignments">Assignments</a></li>
+            <li><a href="#swoc">SWOC</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+          </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button">
+          <span class="theme-icon">🌙</span>
+          <span class="theme-label">Mode</span>
+        </button>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- ASSIGNMENTS (unchanged) -->
-  <!-- ... your assignment content stays exactly the same ... -->
+  <main>
+    <!-- HERO / ABOUT -->
+    <section id="about" class="hero">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span>📚</span>
+          <span>College E-Portfolio</span>
+        </div>
+        <h1>Pranav Dobhal</h1>
+        <h2>Student | Engineering & Computer Science Enthusiast</h2>
+        <p>
+          This e-portfolio showcases my communication skills, presentation work,
+          and collaborative activities completed as part of my course. It includes
+          recorded presentations, JAM sessions, roleplay, and a SWOC analysis.
+        </p>
 
-  <!-- SWOC (unchanged) -->
-  <!-- ... your SWOC content stays exactly the same ... -->
-
-
-  <!-- CERTIFICATES -->
-  <section id="certificates">
-    <h2>🏅 Certificates</h2>
-
-    <div class="cert-grid">
-
-      <!-- CERTIFICATE 1 -->
-      <div class="cert-card">
-        <img src="images/certificate1.jpg" alt="Certificate 1">
-        <div class="cert-body">
-          <h3>Participation in Patent Writing Workshop</h3>
-          <p>
-            Issued by: Graphic Era Hill University, IPR Cell & IIC<br>
-            Description: Participated in “Amusandhan: Mastering the Art of Patent Writing”
-            held on 26-08-25 at GEHU Dehradun, gaining insight into intellectual property
-            and patent drafting.
-          </p>
+        <div class="hero-meta">
+          <span>🎓 Communication Skills</span>
+          <span>🎤 Public Speaking Practice</span>
+          <span>🤝 Team Collaboration</span>
         </div>
       </div>
 
-      <!-- CERTIFICATE 2 -->
-      <div class="cert-card">
-        <img src="images/certificate2.jpg" alt="Certificate 2">
-        <div class="cert-body">
-          <h3>Certificate of Appreciation – B.Tech Induction 2025</h3>
-          <p>
-            Issued by: Graphic Era Hill University, CSE Department<br>
-            Description: Awarded for enthusiastic participation and valuable contribution
-            during the B.Tech Induction Programme 2025.
-          </p>
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo">
+          <img src="images/profile.jpg" alt="Photo of Pranav Dobhal" />
         </div>
       </div>
+    </section>
 
-      <!-- CERTIFICATE 3 -->
-      <div class="cert-card">
-        <img src="images/certificate3.jpg" alt="Certificate 3">
-        <div class="cert-body">
-          <h3>Web Exploitation Workshop Participation</h3>
-          <p>
-            Issued by: CRYPTX – Official Cyber Security Club, GEHU<br>
-            Description: Successfully participated in the “Online Web Exploitation Workshop”
-            organized on 4 October 2025, gaining foundational knowledge in web security.
-          </p>
+    <!-- ASSIGNMENTS -->
+    <section id="assignments">
+      <h2><span class="icon">📝</span>Assignments</h2>
+
+      <!-- Assignment 1 -->
+      <div class="card">
+        <h3>Assignment 1 – SWOC Matrix & Recorded Video</h3>
+        <div class="tag-row">
+          <span class="tag">Self-Analysis</span>
+          <span class="tag">Reflection</span>
+          <span class="tag">Recorded Video</span>
         </div>
+        <p>
+          In this assignment, I created a detailed SWOC (Strengths, Weaknesses,
+          Opportunities, Challenges) analysis of myself as a communicator and
+          recorded a video explaining each point.
+        </p>
+        <ul>
+          <li>Identified key strengths like quick learning and team orientation.</li>
+          <li>Recognised areas to improve such as time management and nervousness while presenting.</li>
+          <li>Reflected on how to use opportunities in class to grow as a speaker.</li>
+        </ul>
       </div>
 
-    </div>
-  </section>
+      <!-- Assignment 2 -->
+      <div class="card">
+        <h3>Assignment 2 – Self Introduction Video</h3>
+        <div class="tag-row">
+          <span class="tag">Introduction</span>
+          <span class="tag">Video</span>
+          <span class="tag">First Impression</span>
+        </div>
+        <p>
+          I recorded a structured self-introduction video, sharing my background,
+          interests, and goals. The focus was on clarity, confidence, and body language.
+        </p>
+        <ul>
+          <li>Introduced myself as <strong>Pranav Dobhal</strong> with academic interests in engineering and CS.</li>
+          <li>Spoke about my strengths, hobbies, and future aspirations.</li>
+          <li>Practised maintaining eye contact, posture, and a clear speaking pace.</li>
+        </ul>
+      </div>
 
-</main>
+      <!-- Assignment 3 -->
+      <div class="card">
+        <h3>Assignment 3 – 4–6 Minute Recorded Presentation</h3>
+        <div class="tag-row">
+          <span class="tag">Formal Presentation</span>
+          <span class="tag">Public Speaking</span>
+        </div>
+        <p><strong>Topic:</strong> <em>[Replace this with your chosen topic from class]</em></p>
+        <p>
+          For this assignment, I prepared and delivered a 4–6 minute presentation
+          on one of the topics discussed in class, using a clear structure: introduction,
+          main points, examples, and conclusion.
+        </p>
+        <ul>
+          <li>Organised the content with a clear beginning, middle, and end.</li>
+          <li>Used examples to make the topic engaging and easy to understand.</li>
+          <li>Applied techniques like voice modulation, pausing, and gestures.</li>
+        </ul>
+      </div>
 
-<footer>
-  © <span id="year"></span> Pranav Dobhal · E-Portfolio
-</footer>
+      <!-- Assignment 4 -->
+      <div class="card">
+        <h3>Assignment 4 – JAM (Just-A-Minute) Speech</h3>
+        <div class="tag-row">
+          <span class="tag">Spontaneous Speaking</span>
+          <span class="tag">JAM</span>
+        </div>
+        <p><strong>Topic:</strong> <em>[Replace with your JAM topic]</em></p>
+        <p>
+          I delivered a one-minute JAM speech where I spoke continuously on the chosen
+          topic without long pauses or fillers.
+        </p>
+        <ul>
+          <li>Practised thinking quickly and speaking fluently under time pressure.</li>
+          <li>Improved my ability to stay on topic and structure thoughts instantly.</li>
+          <li>Worked on reducing “uh”, “um”, and other filler words.</li>
+        </ul>
+      </div>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+      <!-- Assignment 5 -->
+      <div class="card">
+        <h3>Assignment 5 – Group Roleplay: Art of Effective Conversation</h3>
+        <div class="tag-row">
+          <span class="tag">Roleplay</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">Conversation Skills</span>
+        </div>
+        <p>
+          In this group roleplay activity, we performed a scene based on effective
+          conversation skills, focusing on listening, turn-taking, and respectful dialogue.
+        </p>
+        <ul>
+          <li>Participated actively in planning the script and roles.</li>
+          <li>Demonstrated active listening and appropriate responses during the roleplay.</li>
+          <li>Practised body language, tone, and politeness strategies in conversation.</li>
+        </ul>
+        <p><strong>My Role:</strong> I contributed ideas, delivered my lines confidently, and supported my team members throughout the performance.</p>
+      </div>
+    </section>
 
+    <!-- SWOC SECTION -->
+    <section id="swoc">
+      <h2><span class="icon">📊</span>SWOC Analysis</h2>
+      <div class="card">
+        <p>This SWOC analysis summarises my current communication profile.</p>
+
+        <div class="swoc-grid">
+          <div class="swoc-box">
+            <h4>Strengths 💪</h4>
+            <ul>
+              <li>Good communication skills.</li>
+              <li>Confident once comfortable with the audience.</li>
+              <li>Quick learner and adaptable.</li>
+              <li>Team-oriented mindset.</li>
+            </ul>
+          </div>
+
+          <div class="swoc-box">
+            <h4>Weaknesses ⚠️</h4>
+            <ul>
+              <li>Occasional hesitation at the start of presentations.</li>
+              <li>Needs better time management while preparing.</li>
+              <li>Tends to overthink before speaking.</li>
+            </ul>
+          </div>
+
+          <div class="swoc-box">
+            <h4>Opportunities 🚀</h4>
+            <ul>
+              <li>Regular class presentations to gain practice.</li>
+              <li>Group activities and roleplays to build confidence.</li>
+              <li>Exposure to different speaking situations.</li>
+            </ul>
+          </div>
+
+          <div class="swoc-box">
+            <h4>Challenges 🎯</h4>
+            <ul>
+              <li>Managing nervousness during recorded videos.</li>
+              <li>Maintaining clear structure during spontaneous speaking.</li>
+              <li>Handling performance pressure in front of peers.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES SECTION -->
+    <section id="certificates">
+      <h2><span class="icon">🏅</span>Certificates</h2>
+      <div class="cert-grid">
+        <!-- Certificate 1 -->
+        <div class="cert-card">
+          <img src="images/certificate1.jpg" alt="Certificate 1" />
+          <div class="cert-body">
+            <h3>Participation in Patent Writing Workshop</h3>
+            <p>
+              Issued by: Graphic Era Hill University, IPR Cell & Institution's Innovation Council<br />
+              Description: Participated in “Amusandhan: Mastering the Art of Patent Writing”
+              held on 26-08-25 at GEHU Dehradun, gaining insight into intellectual property
+              and patent drafting.
+            </p>
+          </div>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="cert-card">
+          <img src="images/certificate2.jpg" alt="Certificate 2" />
+          <div class="cert-body">
+            <h3>Certificate of Appreciation – B.Tech Induction 2025</h3>
+            <p>
+              Issued by: Graphic Era Hill University, CSE Department<br />
+              Description: Awarded for enthusiastic participation and valuable contribution
+              during the B.Tech Induction Programme 2025.
+            </p>
+          </div>
+        </div>
+
+        <!-- Certificate 3 -->
+        <div class="cert-card">
+          <img src="images/certificate3.jpg" alt="Certificate 3" />
+          <div class="cert-body">
+            <h3>Web Exploitation Workshop Participation</h3>
+            <p>
+              Issued by: CRYPTX – Official Cyber Security Club, GEHU<br />
+              Description: Successfully participated in the “Online Web Exploitation Workshop”
+              organized on 4 October 2025, gaining foundational knowledge in web security.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Pranav Dobhal · E-Portfolio
+  </footer>
+
+  <script>
+    // Year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Dark / light mode toggle with localStorage
+    const body = document.body;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const iconSpan = toggleBtn.querySelector(".theme-icon");
+
+    function setIcon() {
+      iconSpan.textContent = body.classList.contains("dark") ? "☀️" : "🌙";
+    }
+
+    // Load stored preference
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      body.classList.add("dark");
+      setIcon();
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      localStorage.setItem(
+        "theme",
+        body.classList.contains("dark") ? "dark" : "light"
+      );
+      setIcon();
+    });
+  </script>
 </body>
 </html>
