@@ -2,159 +2,530 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pranav Dobhal - E-Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-  <!-- Original CSS unchanged except name/title and PPT links removed -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pranav Dobhal | E-Portfolio</title>
   <style>
-    /* (CSS remains unchanged from the original; omitted here only for brevity in this explanation) */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f5f5f7;
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      padding: 1.5rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 1.5rem auto 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 1.25rem;
+      padding: 1.8rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-text h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-text h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #4b5563;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #374151;
+    }
+
+    .hero-meta span {
+      background: #f3f4f6;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .hero-photo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo {
+      width: 170px;
+      height: 170px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 4px solid #e5e7eb;
+      box-shadow: 0 13px 30px rgba(15, 23, 42, 0.2);
+      background: #e5e7eb;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    section {
+      margin-top: 2rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    section h2 span.icon {
+      font-size: 1.4rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.3rem 1.4rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+    }
+
+    ul {
+      margin-left: 1.1rem;
+      margin-top: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    ul li {
+      margin-bottom: 0.2rem;
+    }
+
+    .swoc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .swoc-box {
+      background: #f9fafb;
+      border-radius: 0.9rem;
+      padding: 0.8rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+    }
+
+    .swoc-box h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .swoc-box ul {
+      margin-left: 1.1rem;
+      margin-top: 0.2rem;
+    }
+
+    .swoc-box ul li {
+      margin-bottom: 0.15rem;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .cert-card {
+      background: white;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cert-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #e5e7eb;
+    }
+
+    .cert-card .cert-body {
+      padding: 0.7rem 0.8rem 0.9rem 0.8rem;
+    }
+
+    .cert-card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .cert-card p {
+      font-size: 0.82rem;
+      color: #4b5563;
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 2rem auto 1.5rem auto;
+      padding: 0 1rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <canvas id="particle-canvas"></canvas>
-
+  <!-- NAVBAR -->
   <header>
-    <div class="header-content">
-      <h1>Pranav Dobhal</h1>
+    <div class="nav-container">
+      <div class="nav-title">Pranav Dobhal</div>
       <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#assignments">Assignments</a>
-        <a href="#courses">Certificates</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#assignments">Assignments</a></li>
+          <li><a href="#swoc">SWOC</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+        </ul>
       </nav>
-      <div class="theme-switch">
-        <span class="sun-icon">☀️</span>
-        <input type="checkbox" id="theme-toggle">
-        <label for="theme-toggle"><span></span></label>
-        <span class="moon-icon">🌙</span>
-      </div>
     </div>
   </header>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Me</h2>
-    <img src="profile.jpg" alt="Pranav Dobhal" class="about-photo" />
-    <p>
-      I’m <b>Pranav Dobhal</b>, currently pursuing <b>B.Tech in Computer Science and Engineering</b>.
-      I am passionate about coding, technology, and learning new tools that improve problem-solving.
-      I have been working on projects related to <b>web development, C programming, and databases</b>,
-      and I am excited to keep building my portfolio. I aim to specialize in <b>AI/ML</b>
-      and contribute to impactful tech solutions.
-    </p>
-    <p>My career focus is on building robust and scalable software, leveraging strong foundational knowledge in <b>Data Structures, Algorithms, and Object-Oriented Programming (OOP)</b>, complemented by practical experience in C, C++, and web technologies.</p>
-    <div class="clear"></div>
-  </section>
+  <main>
+    <!-- HERO / ABOUT -->
+    <section id="about" class="hero">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span>📚</span>
+          <span>College E-Portfolio</span>
+        </div>
+        <h1>Pranav Dobhal</h1>
+        <h2>Student | Engineering & Computer Science Enthusiast</h2>
+        <p>
+          This e-portfolio showcases my communication skills, presentation work,
+          and collaborative activities completed as part of my course. It includes
+          recorded presentations, JAM sessions, roleplay, and a SWOC analysis.
+        </p>
 
-  <!-- Assignments Section -->
-  <section id="assignments">
-    <h2>Assignments</h2>
-    <p>This section is crucial for assessment. Update the placeholder links with your actual links.</p>
-
-    <div class="project">
-      <h3>Assignment No. 1: SWOC Matrix and Recorded Video</h3>
-      <p>Strength, Weakness, Opportunity, and Challenge Matrix with recorded analysis.</p>
-      <p class="tech"><b>Format:</b> Document and Video</p>
-      <div class="links">
-        <a href="swoc-document-link" target="_blank">📑 View SWOC Matrix Document</a>
-        <a href="swoc-video-link" target="_blank">▶️ View Recorded Video</a>
+        <div class="hero-meta">
+          <span>🎓 Communication Skills</span>
+          <span>🎤 Public Speaking Practice</span>
+          <span>🤝 Team Collaboration</span>
+        </div>
       </div>
-    </div>
 
-    <div class="project">
-      <h3>Assignment No. 2: Self Introduction Video</h3>
-      <p>A video introducing yourself, your background, and professional goals.</p>
-      <p class="tech"><b>Format:</b> Recorded Video</p>
-      <div class="links">
-        <a href="self-intro-video-link" target="_blank">▶️ View Self Introduction Video</a>
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo">
+          <!-- TODO: Replace this path with your actual photo -->
+          <img src="images/profile.jpg" alt="Photo of Pranav Dobhal" />
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="project">
-      <h3>Assignment No. 3: Recorded Presentation (4–6 min)</h3>
-      <p>Structured recorded presentation on a given topic.</p>
-      <p class="tech"><b>Format:</b> Video Presentation</p>
-      <div class="links">
-        <a href="presentation-video-link" target="_blank">▶️ View Presentation Video</a>
+    <!-- ASSIGNMENTS -->
+    <section id="assignments">
+      <h2><span class="icon">📝</span>Assignments</h2>
+
+      <!-- Assignment 1 -->
+      <div class="card">
+        <h3>Assignment 1 – SWOC Matrix & Recorded Video</h3>
+        <div class="tag-row">
+          <span class="tag">Self-Analysis</span>
+          <span class="tag">Reflection</span>
+          <span class="tag">Recorded Video</span>
+        </div>
+        <p>
+          In this assignment, I created a detailed SWOC (Strengths, Weaknesses,
+          Opportunities, Challenges) analysis of myself as a communicator and
+          recorded a video explaining each point.
+        </p>
+        <ul>
+          <li>Identified key strengths like quick learning and team orientation.</li>
+          <li>Recognised areas to improve such as time management and nervousness while presenting.</li>
+          <li>Reflected on how to use opportunities in class to grow as a speaker.</li>
+        </ul>
       </div>
-    </div>
 
-    <div class="project">
-      <h3>Assignment No. 4: Just-A-Minute (JAM) Speech</h3>
-      <p>A spontaneous one‑minute speech on a topic.</p>
-      <p class="tech"><b>Format:</b> Recorded Video</p>
-      <div class="links">
-        <a href="jam-video-link" target="_blank">▶️ View JAM Speech Video</a>
+      <!-- Assignment 2 -->
+      <div class="card">
+        <h3>Assignment 2 – Self Introduction Video</h3>
+        <div class="tag-row">
+          <span class="tag">Introduction</span>
+          <span class="tag">Video</span>
+          <span class="tag">First Impression</span>
+        </div>
+        <p>
+          I recorded a structured self-introduction video, sharing my background,
+          interests, and goals. The focus was on clarity, confidence, and body language.
+        </p>
+        <ul>
+          <li>Introduced myself as <strong>Pranav Dobhal</strong> with academic interests in engineering and CS.</li>
+          <li>Spoke about my strengths, hobbies, and future aspirations.</li>
+          <li>Practised maintaining eye contact, posture, and a clear speaking pace.</li>
+        </ul>
       </div>
-    </div>
 
-    <div class="project">
-      <h3>Assignment No. 5: Group Role Play</h3>
-      <p>Group role-play demonstrating conversational skills.</p>
-      <p class="tech"><b>Format:</b> Video</p>
-      <div class="links">
-        <a href="role-play-video-link" target="_blank">▶️ View Role Play Video</a>
+      <!-- Assignment 3 -->
+      <div class="card">
+        <h3>Assignment 3 – 4–6 Minute Recorded Presentation</h3>
+        <div class="tag-row">
+          <span class="tag">Formal Presentation</span>
+          <span class="tag">Public Speaking</span>
+        </div>
+        <!-- TODO: Change this topic to your actual topic -->
+        <p><strong>Topic:</strong> <em>[Replace this with your chosen topic from class]</em></p>
+        <p>
+          For this assignment, I prepared and delivered a 4–6 minute presentation
+          on one of the topics discussed in class, using a clear structure: introduction,
+          main points, examples, and conclusion.
+        </p>
+        <ul>
+          <li>Organised the content with a clear beginning, middle, and end.</li>
+          <li>Used examples to make the topic engaging and easy to understand.</li>
+          <li>Applied techniques like voice modulation, pausing, and gestures.</li>
+        </ul>
       </div>
-    </div>
-  </section>
 
-  <!-- Projects (PPT links removed) -->
-  <section id="projects">
-    <h2>Technical Projects</h2>
-
-    <div class="project">
-      <h3>University Time Table Management System</h3>
-      <p>A C-based system that automates scheduling of classes and prevents timetable conflicts.</p>
-      <p class="tech"><b>Technologies:</b> C, File Handling, Modular Design</p>
-      <ul>
-        <li>Automatic timetable generation</li>
-        <li>Clash detection</li>
-        <li>Dynamic updates and reports</li>
-      </ul>
-      <div class="links">
-        <a href="github-or-drive-link-1" target="_blank">🔗 Source Code</a>
+      <!-- Assignment 4 -->
+      <div class="card">
+        <h3>Assignment 4 – JAM (Just-A-Minute) Speech</h3>
+        <div class="tag-row">
+          <span class="tag">Spontaneous Speaking</span>
+          <span class="tag">JAM</span>
+        </div>
+        <!-- TODO: Change topic -->
+        <p><strong>Topic:</strong> <em>[Replace with your JAM topic]</em></p>
+        <p>
+          I delivered a one-minute JAM speech where I spoke continuously on the chosen
+          topic without long pauses or fillers.
+        </p>
+        <ul>
+          <li>Practised thinking quickly and speaking fluently under time pressure.</li>
+          <li>Improved my ability to stay on topic and structure thoughts instantly.</li>
+          <li>Worked on reducing “uh”, “um”, and other filler words.</li>
+        </ul>
       </div>
-    </div>
 
-    <div class="project">
-      <h3>Parking Management System (SmartCampus IoT)</h3>
-      <p>A C‑based parking slot and billing system simulating IoT‑based data flow.</p>
-      <p class="tech"><b>Technologies:</b> C, File Handling, IoT Simulation</p>
-      <ul>
-        <li>Slot availability tracking</li>
-        <li>Vehicle entry/exit records</li>
-        <li>Data persistence</li>
-      </ul>
-      <div class="links">
-        <a href="github-or-drive-link-2" target="_blank">🔗 Source Code</a>
+      <!-- Assignment 5 -->
+      <div class="card">
+        <h3>Assignment 5 – Group Roleplay: Art of Effective Conversation</h3>
+        <div class="tag-row">
+          <span class="tag">Roleplay</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">Conversation Skills</span>
+        </div>
+        <p>
+          In this group roleplay activity, we performed a scene based on effective
+          conversation skills, focusing on listening, turn-taking, and respectful dialogue.
+        </p>
+        <ul>
+          <li>Participated actively in planning the script and roles.</li>
+          <li>Demonstrated active listening and appropriate responses during the roleplay.</li>
+          <li>Practised body language, tone, and politeness strategies in conversation.</li>
+        </ul>
+        <p><strong>My Role:</strong> I contributed ideas, delivered my lines confidently, and supported my team members throughout the performance.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="project">
-      <h3>Smart Crop Advisory System (SIH 2025 Proposal)</h3>
-      <p>A proposal for an AI‑assisted crop advisory platform.</p>
-      <p class="tech"><b>Technologies:</b> Python, Flask, HTML, CSS, JS, APIs</p>
-      <ul>
-        <li>Personalized crop advisory</li>
-        <li>Weather and price‑based predictions</li>
-        <li>Modern UI with stepper design</li>
-      </ul>
-      <div class="links">
-        <a href="github-or-drive-link-3" target="_blank">🔗 Proposal Details</a>
+    <!-- SWOC SECTION -->
+    <section id="swoc">
+      <h2><span class="icon">📊</span>SWOC Analysis</h2>
+      <div class="card">
+        <p>This SWOC analysis summarises my current communication profile.</p>
+
+        <div class="swoc-grid">
+          <div class="swoc-box">
+            <h4>Strengths 💪</h4>
+            <ul>
+              <li>Good communication skills.</li>
+              <li>Confident once comfortable with the audience.</li>
+              <li>Quick learner and adaptable.</li>
+              <li>Team-oriented mindset.</li>
+            </ul>
+          </div>
+
+          <div class="swoc-box">
+            <h4>Weaknesses ⚠️</h4>
+            <ul>
+              <li>Occasional hesitation at the start of presentations.</li>
+              <li>Needs better time management while preparing.</li>
+              <li>Tends to overthink before speaking.</li>
+            </ul>
+          </div>
+
+          <div class="swoc-box">
+            <h4>Opportunities 🚀</h4>
+            <ul>
+              <li>Regular class presentations to gain practice.</li>
+              <li>Group activities and roleplays to build confidence.</li>
+              <li>Exposure to different speaking situations.</li>
+            </ul>
+          </div>
+
+          <div class="swoc-box">
+            <h4>Challenges 🎯</h4>
+            <ul>
+              <li>Managing nervousness during recorded videos.</li>
+              <li>Maintaining clear structure during spontaneous speaking.</li>
+              <li>Handling performance pressure in front of peers.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Certificates, Skills, Gallery, Contact remain same except name updated -->
+    <!-- CERTIFICATES SECTION -->
+    <section id="certificates">
+      <h2><span class="icon">🏅</span>Certificates</h2>
+      <div class="cert-grid">
+        <!-- Certificate 1 -->
+        <div class="cert-card">
+          <!-- TODO: Replace with your certificate image -->
+          <img src="images/certificate1.jpg" alt="Certificate 1" />
+          <div class="cert-body">
+            <h3>Certificate Title 1</h3>
+            <p>
+              Issued by: [Institution / Platform]<br />
+              Description: [Short description of what you achieved].
+            </p>
+          </div>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="cert-card">
+          <img src="images/certificate2.jpg" alt="Certificate 2" />
+          <div class="cert-body">
+            <h3>Certificate Title 2</h3>
+            <p>
+              Issued by: [Institution / Platform]<br />
+              Description: [Short description of the course or event].
+            </p>
+          </div>
+        </div>
+
+        <!-- Certificate 3 -->
+        <div class="cert-card">
+          <img src="images/certificate3.jpg" alt="Certificate 3" />
+          <div class="cert-body">
+            <h3>Certificate Title 3</h3>
+            <p>
+              Issued by: [Institution / Platform]<br />
+              Description: [Short description].
+            </p>
+          </div>
+        </div>
+      </div>
+      <p style="font-size: 0.85rem; margin-top: 0.5rem; color: #4b5563;">
+        *Add or remove certificate cards as needed by copying or deleting the blocks above.*
+      </p>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Pranav Dobhal | Developed with Attention to Detail</p>
+    &copy; <span id="year"></span> Pranav Dobhal · E-Portfolio
   </footer>
 
   <script>
-    /* JavaScript remains identical to the original file */
+    // Set current year in footer automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
